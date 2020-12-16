@@ -83,24 +83,24 @@ WARNING
         @cache.load_without_overwrite public_assets_folder
         @cache.load default_assets_cache
 
-        precompile.invoke(env: rake_env)
+        #precompile.invoke(env: rake_env)
+        # precompile.success = true
+        # if precompile.success?
+        #   log "assets_precompile", :status => "success"
+        #   puts "Asset precompilation completed (#{"%.2f" % precompile.time}s)"
 
-        if precompile.success?
-          log "assets_precompile", :status => "success"
-          puts "Asset precompilation completed (#{"%.2f" % precompile.time}s)"
+        #   clean_task = rake.task("assets:clean")
+        #   if clean_task.task_defined?
+        #     puts "Cleaning assets"
+        #     clean_task.invoke(env: rake_env)
 
-          clean_task = rake.task("assets:clean")
-          if clean_task.task_defined?
-            puts "Cleaning assets"
-            clean_task.invoke(env: rake_env)
-
-            cleanup_assets_cache
-            @cache.store public_assets_folder
-            @cache.store default_assets_cache
-          end
-        else
-          precompile_fail(precompile.output)
-        end
+        #     cleanup_assets_cache
+        #     @cache.store public_assets_folder
+        #     @cache.store default_assets_cache
+        #   end
+        # else
+        #   precompile_fail(precompile.output)
+        # end
       end
     end
   end
