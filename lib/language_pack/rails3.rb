@@ -176,24 +176,25 @@ WARNING
   def run_assets_precompile_rake_task
     instrument "rails3.run_assets_precompile_rake_task" do
       log("assets_precompile") do
-        if File.exists?("public/assets/manifest.yml")
-          puts "Detected manifest.yml, assuming assets were compiled locally"
-          return true
-        end
+        return true
+        # if File.exists?("public/assets/manifest.yml")
+        #   puts "Detected manifest.yml, assuming assets were compiled locally"
+        #   return true
+        # end
 
-        precompile = rake.task("assets:precompile")
-        return true unless precompile.is_defined?
+        # precompile = rake.task("assets:precompile")
+        # return true unless precompile.is_defined?
 
-        topic("Preparing app for Rails asset pipeline")
+        # topic("Preparing app for Rails asset pipeline")
 
-        precompile.invoke(env: rake_env)
+        # precompile.invoke(env: rake_env)
 
-        if precompile.success?
-          log "assets_precompile", :status => "success"
-          puts "Asset precompilation completed (#{"%.2f" % precompile.time}s)"
-        else
-          precompile_fail(precompile.output)
-        end
+        # if precompile.success?
+        #   log "assets_precompile", :status => "success"
+        #   puts "Asset precompilation completed (#{"%.2f" % precompile.time}s)"
+        # else
+        #   precompile_fail(precompile.output)
+        # end
       end
     end
   end
